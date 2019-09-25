@@ -45,4 +45,13 @@ export class HeroService {
         catchError(this.handleError<Hero>(`getHero id=${id}`))
       );
   }
+
+  updateHero(hero : Hero) : Observable<Hero> {
+    let url:string = `${this.heroesUrl}/${hero.id}`
+    return this.http.put<Hero>(url, hero, {
+      headers : new HttpHeaders({
+        'Content-Type' : 'application/json'
+      })
+    })
+  }
 }
