@@ -12,6 +12,11 @@ import { catchError, map, tap } from 'rxjs/operators';
 export class HeroService {
 
   private heroesUrl = 'api/v1/heroes';
+  private httpOptions = {
+    headers : new HttpHeaders({
+      'Content-Type' : 'application/json'
+    })
+  };
 
   constructor(private messageService: MessageService,
     private http:HttpClient) { }
@@ -32,7 +37,7 @@ export class HeroService {
   handleError<T>(operation = 'operation', result?:T){
       return (error: any): Observable<T> => {
         console.error(error);
-        this.log("${operation} failed : ${error.message}");
+        this.log(`${operation} failed : ${error.message}`);
         return of(result as T);
       }
   }
@@ -48,10 +53,25 @@ export class HeroService {
 
   updateHero(hero : Hero) : Observable<Hero> {
     let url:string = `${this.heroesUrl}/${hero.id}`
-    return this.http.put<Hero>(url, hero, {
-      headers : new HttpHeaders({
-        'Content-Type' : 'application/json'
-      })
-    })
+    return this.http.put<Hero>(url, hero, this.httpOptions)
+    .pipe(
+      tap((newHero: Hero) => this.log(`Updated hero w/ id=${newHero.id}`)),
+      catchError(this.handleError<Hero>('updateHero'))
+    );
+  }
+
+  addHero (hero: Hero): Observable<Hero> {
+    return this.http.post<Hero>(this.heroesUrl, hero, this.httpOptions).pipe(
+      tap((newHero: Hero) => this.log(`added hero w/ id=${newHero.id}`)),
+      catchError(this.handleError<Hero>('addHero'))
+    );
+  }
+
+  deleteHero(hero: Hero): Observable<Hero> {
+    return this.http.delete<Hero>(`${this.heroesUrl}/${hero.id}`)
+    .pipe(
+      tap(() => this.log(`deleted hero w/ id=${hero.id}`)),
+      catchError(this.handleError<Hero>('deleteHero'))
+    );
   }
 }
