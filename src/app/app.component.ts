@@ -7,4 +7,8 @@ import { Component } from '@angular/core';
 })
 export class AppComponent {
   title = 'tour-of-heroes';
+  tabs = [
+    { label: 'Dashboard', icon: 'airplanemode_active' },
+    { label: 'Heroes', icon: 'hotel' }
+  ];
 }

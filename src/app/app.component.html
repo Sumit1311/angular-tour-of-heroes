@@ -1,7 +1,15 @@
-<h1>{{title}}</h1>
-<nav>
-        <a routerLink="/heroes">Heroes</a>
-        <a routerLink="/dashboard">Dashboard</a>
-      </nav>
-<router-outlet></router-outlet>
+<mdc-top-app-bar fixed [scrollTarget]="fixedContent">
+  <mdc-top-app-bar-row>
+    <mdc-top-app-bar-section align="start" title="{{title}}">
+      
+    </mdc-top-app-bar-section>
+    <mdc-top-app-bar-section align="end">
+      <mdc-icon mdcTopAppBarActionItem routerLink="/heroes">file_download</mdc-icon>
+      <mdc-icon mdcTopAppBarActionItem routerLink="/dashboard">print</mdc-icon>
+    </mdc-top-app-bar-section>
+  </mdc-top-app-bar-row>
+</mdc-top-app-bar>
+<mdc-card >
+    <router-outlet></router-outlet>
+</mdc-card>
 <app-messages></app-messages>
