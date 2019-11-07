@@ -1,10 +1,29 @@
-<h3>Top Heroes</h3>
-<div class="grid grid-pad">
-  <a *ngFor="let hero of heroes" class="col-1-4" routerLink="/detail/{{hero.id}}">
-    <div class="module hero">
-      <h4>{{hero.name}}</h4>
-    </div>
-  </a>
-</div>
+<mat-card>
+  <mat-card-header>
+    <mat-card-title>Top Heroes</mat-card-title>
+    <mat-card-subtitle>Top 4</mat-card-subtitle>
+  </mat-card-header>
+  <mat-card-content>
+      <mat-grid-list cols="4">
+          <mat-grid-tile *ngFor="let hero of heroes">
+              <mat-card class="example-card" >
+                  <mat-card-header>
+                    <mat-card-title>{{hero.name}}</mat-card-title>
+                    <mat-card-subtitle>{{hero.id}}</mat-card-subtitle>
+                  </mat-card-header>
+                  <mat-card-content>
+                    <p>
+                      The name of hero is {{hero.name}}.
+                    </p>
+                  </mat-card-content>
+                  <mat-card-actions>
+                    <a routerLink="/detail/{{hero.id}}" mat-button>VIEW</a>
+                  </mat-card-actions>
+                </mat-card>
+          </mat-grid-tile>
+  </mat-grid-list>
+    
+  </mat-card-content>
+</mat-card>
 
-<app-hero-search></app-hero-search>
+<app-hero-search></app-hero-search> 
