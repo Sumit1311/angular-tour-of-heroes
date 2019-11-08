@@ -1,4 +1,5 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input } from '@angular/core';
+import {FormControl} from '@angular/forms'
 
 import { Observable, Subject } from 'rxjs';
 
@@ -15,8 +16,11 @@ import { HeroService } from '../hero.service';
   styleUrls: [ './hero-search.component.css' ]
 })
 export class HeroSearchComponent implements OnInit {
+  myControl = new FormControl();
+  options: string[] = ['One', 'Two', 'Three'];
   heroes$: Observable<Hero[]>;
   private searchTerms = new Subject<string>();
+  @Input() showSearchBar: Boolean;
 
   constructor(private heroService: HeroService) {}
 

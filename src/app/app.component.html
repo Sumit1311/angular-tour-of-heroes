@@ -3,9 +3,10 @@
   <mat-toolbar-row>
     <span>{{title}}</span>
     <span class="example-spacer"></span>
-    <button mat-icon-button aria-label="Example icon-button with a heart icon">
-        <mat-icon>search</mat-icon>
-    </button>
+    <app-hero-search *ngIf="showSearchBar" [(showSearchBar)]="showSearchBar"></app-hero-search>
+    <button mat-button mat-icon-button *ngIf="!showSearchBar" aria-label="Search" (click)="showSearchBar=true">
+      <mat-icon>search</mat-icon>
+     </button>
     <a mat-button routerLink="/heroes">Heroes</a>
     <a mat-button routerLink="/dashboard">Dashboard</a>
   </mat-toolbar-row>
