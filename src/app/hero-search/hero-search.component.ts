@@ -1,4 +1,4 @@
-import { Component, OnInit, Input } from '@angular/core';
+import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
 import {FormControl} from '@angular/forms'
 
 import { Observable, Subject } from 'rxjs';
@@ -20,7 +20,8 @@ export class HeroSearchComponent implements OnInit {
   options: string[] = ['One', 'Two', 'Three'];
   heroes$: Observable<Hero[]>;
   private searchTerms = new Subject<string>();
-  @Input() showSearchBar: Boolean;
+  @Input() showSearchBar = true;
+  @Output() showSearchBarChange = new EventEmitter<boolean>();
 
   constructor(private heroService: HeroService) {}
 
