@@ -19,6 +19,7 @@ import {MatGridListModule} from '@angular/material/grid-list';
 import {MatFormFieldModule} from '@angular/material/form-field'
 import {MatInputModule} from '@angular/material/input'
 import {MatAutocompleteModule} from '@angular/material/autocomplete'
+import {MatListModule} from '@angular/material/list'
 
 @NgModule({
   declarations: [
@@ -43,7 +44,8 @@ import {MatAutocompleteModule} from '@angular/material/autocomplete'
     MatInputModule,
     MatFormFieldModule,
     MatAutocompleteModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    MatListModule
   ],
   providers: [],
   bootstrap: [AppComponent]

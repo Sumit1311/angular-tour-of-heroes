@@ -6,9 +6,9 @@
     </button>
     <mat-autocomplete #auto="matAutocomplete">
         <mat-option *ngFor="let hero of heroes$ | async">
-            <a routerLink="/detail/{{hero.id}}">
-              {{hero.name}}
-            </a>
+          <p mat-line routerLink="/detail/{{hero.id}}">
+            {{hero.name}}
+          </p>
         </mat-option>
     </mat-autocomplete>
 </mat-form-field>
