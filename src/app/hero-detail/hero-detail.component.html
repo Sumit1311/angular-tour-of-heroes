@@ -1,5 +1,7 @@
-<button (click)="goBack()">go back</button>
 <mat-card *ngIf="hero">
+    <button mat-button mat-icon-button (click)="goBack()">
+        <mat-icon>arrow_back</mat-icon>
+      </button>
     <mat-card-header>
       <mat-card-title>{{hero.name | uppercase}} Details</mat-card-title>
     </mat-card-header>
